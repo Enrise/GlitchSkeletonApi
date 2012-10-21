@@ -1,3 +1,6 @@
 [submodule "vendor/ZF2"]
 	path = vendor/ZF2
-	url = https://github.com/zendframework/zf2.git
+	url = https://github.com/Freeaqingme/zf2.git
+[submodule "vendor/Glitch"]
+	path = vendor/Glitch
+	url = git@github.com:Enrise/Glitch.git

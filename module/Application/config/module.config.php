@@ -20,6 +20,15 @@ return array(
                     ),
                 ),
             ),
+            'api' => array(
+                    'type' => 'Glitch\Mvc\Router\Http\Rest',
+                    'options' => array(
+                            'route' => '/api',
+                            'defaults' => array(
+                                    'controller' => 'Application\Controller\API'
+                            )
+                    ),
+            ),
             // The following is a route to simplify getting started creating
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
@@ -69,7 +78,8 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Application\Controller\Index' => 'Application\Controller\IndexController'
+            'Application\Controller\Index' => 'Application\Controller\Index',
+            'Application\Controller\Api' => 'Application\Controller\Api',
         ),
     ),
     'view_manager' => array(
