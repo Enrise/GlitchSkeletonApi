@@ -19,42 +19,12 @@ use Zend\Debug\Debug;
 class Api extends AbstractRestfulController
 {
 
-    /**
-     * @var string|array
-     */
-    protected static $resourceId = 'website';
-
-    /**
-     * @var string|array
-     */
-    protected static $collectionId = 'websites';
-
     public function indexAction()
     {
-        return new ViewModel();
+        $view = new ViewModel(array('foo' => 'bar'));
+//         $view->setTemplate('foobar');
+        return $view;
     }
-
-    public function passThroughResource(MvcEvent $e)
-    {
-        list($key, $value) = parent::passThroughResource($e);
-
-        // $mapper = $this->_getMapper();
-        // $obj = $mapper->findById($key);
-        $obj  = (object) array('id' => $value);
-
-        $this->getRequest()->setMetadata($key, $obj);
-    }
-
-    public function collectionGetAction()
-    {
-        echo 'Collection of websites'; exit;
-    }
-
-    public function resourceGetAction()
-    {
-        echo 'Resource of website'; exit;
-    }
-
 
     /**
      * Should be abstract

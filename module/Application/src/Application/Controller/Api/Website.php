@@ -23,23 +23,35 @@ class Website extends AbstractRestfulController
      *
      * @var string|array
      */
-    protected static $resourceId = 'user';
+    protected static $resourceId = 'website';
 
     /**
      * @var string|array
      */
-    protected static $collectionId = 'users';
+    protected static $collectionId = 'websites';
+
+    public function passThroughResource(MvcEvent $e)
+    {
+        list($key, $value) = parent::passThroughResource($e);
+
+        // $mapper = $this->_getMapper();
+        // $obj = $mapper->findById($key);
+        $obj  = (object) array('id' => $value);
+
+        $this->getRequest()->setMetadata($key, $obj);
+    }
+
+
 
     public function collectionGetAction()
     {
         $website = $this->getRequest()->getMetadata('website');
-        echo 'Collection of users in website #' . $website->id; exit;
+        return new ViewModel();
     }
-
 
     public function resourceGetAction()
     {
-        echo 'Resource of user';
+        echo 'Resource of website';
         exit;
     }
 

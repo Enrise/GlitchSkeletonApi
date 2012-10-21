@@ -25,7 +25,7 @@ return array(
                     'options' => array(
                             'route' => '/api',
                             'defaults' => array(
-                                    'controller' => 'Application\Controller\API'
+                                    'controller' => 'Application\Controller\API',
                             )
                     ),
             ),
