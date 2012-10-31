@@ -7,7 +7,7 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Application\Controller;
+namespace Application\Controller\Api\Website;
 
 use Glitch\Mvc\Controller\AbstractRestfulController;
 use Zend\Mvc\Controller\AbstractActionController;
@@ -16,14 +16,34 @@ use Zend\View\Model\ViewModel;
 
 use Zend\Debug\Debug;
 
-class Api extends AbstractRestfulController
+class User extends AbstractRestfulController
 {
 
-    public function indexAction()
+    /**
+     *
+     * @var string|array
+     */
+    protected static $resourceId = 'user';
+
+    /**
+     * @var string|array
+     */
+    protected static $collectionId = 'users';
+
+
+
+    public function collectionGetAction()
     {
-        $view = new ViewModel(array('foo' => 'bar'));
-        return $view;
+        $website = $this->getRequest()->getMetadata('website');
+        return new ViewModel();
     }
+
+    public function resourceGetAction()
+    {
+        var_dump($this->getResourceId());
+        exit;
+    }
+
 
     /**
      * Should be abstract
