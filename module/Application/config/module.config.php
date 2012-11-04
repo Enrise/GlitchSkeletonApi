@@ -20,7 +20,10 @@ return array(
                     ),
                 ),
             ),
-            'api' => array(
+/*          Ideally This block should not be commented. But it seems to be impossible to inject an
+            SM otherwise into the route's factory methods.
+
+              'api' => array(
                     'type' => 'Glitch\Mvc\Router\Http\Rest',
                     'options' => array(
                             'route' => '/api',
@@ -28,7 +31,7 @@ return array(
                                     'controller' => 'Application\Controller\API',
                             )
                     ),
-            ),
+            ),*/
             // The following is a route to simplify getting started creating
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
@@ -62,8 +65,13 @@ return array(
         ),
     ),
     'service_manager' => array(
+        'allow_override' => true,
+        'aliases' => array(
+            'ControllerLoader' => 'Glitch\Mvc\Controller\ControllerManager',
+        ),
         'factories' => array(
             'translator' => 'Zend\I18n\Translator\TranslatorServiceFactory',
+            'Glitch\Mvc\Controller\ControllerManager ' => 'Glitch\Mvc\Service\ControllerLoaderFactory',
         ),
     ),
     'translator' => array(
@@ -80,6 +88,8 @@ return array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\Index',
             'Application\Controller\Api' => 'Application\Controller\Api',
+            'Application\Controller\Api\Website' => 'Application\Controller\Api\Website',
+            'Application\Controller\Api\Website\User' => 'Application\Controller\Api\Website\User',
         ),
     ),
     'view_manager' => array(

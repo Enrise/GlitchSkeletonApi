@@ -34,6 +34,8 @@ class User extends AbstractRestfulController
 
     public function collectionGetAction()
     {
+//         $db = $this->getServiceLocator()->get('Global\Db\Adapter\Main');
+//         var_dump($db->query('SELECT @@SESSION.sql_mode;'));
         $website = $this->getRequest()->getMetadata('website');
         return new ViewModel();
     }

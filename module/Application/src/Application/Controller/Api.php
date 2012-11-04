@@ -19,7 +19,7 @@ use Zend\Debug\Debug;
 class Api extends AbstractRestfulController
 {
 
-    public function indexAction()
+    public function rootGetAction()
     {
         $view = new ViewModel(array('foo' => 'bar'));
         return $view;

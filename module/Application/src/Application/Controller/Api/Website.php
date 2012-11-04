@@ -10,9 +10,8 @@
 namespace Application\Controller\Api;
 
 use Glitch\Mvc\Controller\AbstractRestfulController;
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\Mvc\MvcEvent;
 use Zend\View\Model\ViewModel;
+use \Glitch\Mvc\Router\Http\Rest\RouteMatch;
 
 use Zend\Debug\Debug;
 
@@ -30,9 +29,9 @@ class Website extends AbstractRestfulController
      */
     protected static $collectionId = 'websites';
 
-    public function passThroughResource(MvcEvent $e)
+    public function passThroughResource(RouteMatch $routeMatch)
     {
-        list($key, $value) = parent::passThroughResource($e);
+        list($key, $value) = parent::passThroughResource($routeMatch);
 
         // $mapper = $this->_getMapper();
         // $obj = $mapper->findById($key);

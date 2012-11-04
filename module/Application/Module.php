@@ -20,6 +20,22 @@ class Module
         $eventManager        = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
+
+        $this->setupRoutes($e);
+    }
+
+    protected function setupRoutes(MvcEvent $e)
+    {
+        $options =  array(
+            'route' => '/api',
+            'defaults' => array(
+                'controller' => 'Application\Controller\Api',
+            )
+        );
+
+        $route = \Glitch\Mvc\Router\Http\Rest::factory($options, $e->getApplication()->getServiceManager());
+        $router = $e->getApplication()->getServiceManager()->get('router');
+        $router->addRoute('api', $route);
     }
 
     public function getConfig()
