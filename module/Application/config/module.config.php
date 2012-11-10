@@ -65,13 +65,8 @@ return array(
         ),
     ),
     'service_manager' => array(
-        'allow_override' => true,
-        'aliases' => array(
-            'ControllerLoader' => 'Glitch\Mvc\Controller\ControllerManager',
-        ),
         'factories' => array(
             'translator' => 'Zend\I18n\Translator\TranslatorServiceFactory',
-            'Glitch\Mvc\Controller\ControllerManager ' => 'Glitch\Mvc\Service\ControllerLoaderFactory',
         ),
     ),
     'translator' => array(

@@ -9,5 +9,5 @@ chdir(dirname(__DIR__));
 require 'init_autoloader.php';
 
 // Run the application!
-$app = Glitch\Mvc\Application::init(require 'config/application.config.php');
+$app = Zend\Mvc\Application::init(require 'config/application.config.php');
 $app->run();
