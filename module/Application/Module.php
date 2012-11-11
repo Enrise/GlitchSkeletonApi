@@ -11,6 +11,8 @@ namespace Application;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Glitch\Mvc\Router\Http\RestRouteListener;
+use Zend\ModuleManager\ModuleEvent;
 
 class Module
 {
@@ -21,21 +23,10 @@ class Module
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
 
-        $this->setupRoutes($e);
-    }
+        $sharedEvents = $eventManager->getSharedManager();
+        $restRouteListener   = new RestRouteListener();;
+        $eventManager->attach(MvcEvent::EVENT_ROUTE, array($restRouteListener, 'setupRoutes'), 25);
 
-    protected function setupRoutes(MvcEvent $e)
-    {
-        $options =  array(
-            'route' => '/api',
-            'defaults' => array(
-                'controller' => 'Application\Controller\Api',
-            )
-        );
-
-        $route = \Glitch\Mvc\Router\Http\Rest::factory($options, $e->getApplication()->getServiceManager());
-        $router = $e->getApplication()->getServiceManager()->get('router');
-        $router->addRoute('api', $route);
     }
 
     public function getConfig()

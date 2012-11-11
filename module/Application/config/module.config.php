@@ -9,6 +9,18 @@
 
 return array(
     'router' => array(
+        'apiRoutes' => array(
+            /*
+             * Ideally This block should simply be under 'routes'. But it seems to be impossible to inject an
+             * SM otherwise into the route's factory methods.
+             */
+            'routeName' => array(
+                'route' => '/api',
+                'defaults' => array(
+                    'controller' => 'Application\Controller\Api',
+                )
+            )
+        ),
         'routes' => array(
             'home' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
@@ -20,18 +32,6 @@ return array(
                     ),
                 ),
             ),
-/*          Ideally This block should not be commented. But it seems to be impossible to inject an
-            SM otherwise into the route's factory methods.
-
-              'api' => array(
-                    'type' => 'Glitch\Mvc\Router\Http\Rest',
-                    'options' => array(
-                            'route' => '/api',
-                            'defaults' => array(
-                                    'controller' => 'Application\Controller\API',
-                            )
-                    ),
-            ),*/
             // The following is a route to simplify getting started creating
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
